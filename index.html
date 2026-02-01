@@ -2,21 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine?</title>
     <style>
-        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffeef2; padding-top: 50px; }
-        .container { background: white; padding: 50px; border-radius: 20px; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        h1 { color: #d63384; }
-        .buttons { margin-top: 30px; position: relative; height: 100px; }
-        button { padding: 15px 30px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; transition: 0.3s; }
-        #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { background-color: #6c757d; color: white; position: absolute; }
+        body { 
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            background-color: #ffeef2; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            position: relative;
+            width: 350px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 { color: #d63384; font-size: 24px; }
+        .buttons { margin-top: 20px; width: 100%; position: relative; height: 60px; }
+        button { padding: 12px 25px; font-size: 18px; border-radius: 10px; border: none; cursor: pointer; position: absolute; }
+        #yesBtn { background-color: #ff4d6d; color: white; left: 50px; }
+        #noBtn { background-color: #6c757d; color: white; right: 50px; transition: 0.2s; }
+        img { border-radius: 15px; margin-bottom: 20px; max-width: 200px; }
     </style>
 </head>
 <body>
 
 <div class="container" id="mainCard">
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG53bm53bm53bm53bm53bm53bm53bm53bm53bm53bm53&ep=v1_gifs_search&rid=giphy.gif&ct=s" width="150" alt="Cute Cat">
+    <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG53bm53bm53bm53bm53bm53bm53bm53bm53bm53bm53&ep=v1_gifs_search&rid=giphy.gif&ct=s" alt="Cute Cat">
     <h1>Will you be my Valentine?</h1>
     <div class="buttons">
         <button id="yesBtn" onclick="celebrate()">Yes</button>
@@ -26,14 +50,22 @@
 
 <script>
     function moveButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
-        document.getElementById('noBtn').style.left = x + 'px';
-        document.getElementById('noBtn').style.top = y + 'px';
+        const btn = document.getElementById('noBtn');
+        const container = document.getElementById('mainCard');
+        
+        // This math keeps the button strictly inside the white box
+        const maxX = container.clientWidth - btn.clientWidth - 20;
+        const maxY = container.clientHeight - btn.clientHeight - 20;
+        
+        const x = Math.floor(Math.random() * maxX);
+        const y = Math.floor(Math.random() * maxY);
+        
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
     }
 
     function celebrate() {
-        document.getElementById('mainCard').innerHTML = "<h1>YAY! ❤️ See you then!</h1><img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG53bm53bm53bm53bm53bm53bm53bm53bm53bm53bm53&ep=v1_gifs_search&rid=giphy.gif&ct=g' width='300'>";
+        document.getElementById('mainCard').innerHTML = "<h1>YAY! ❤️ See you then!</h1><img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG53bm53bm53bm53bm53bm53bm53bm53bm53bm53bm53&ep=v1_gifs_search&rid=giphy.gif&ct=g' width='250'>";
     }
 </script>
 
